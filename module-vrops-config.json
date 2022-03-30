@@ -1,0 +1,91 @@
+{    
+    "deploy": [
+             {
+            "name": "probe01",
+            "automatic": false,
+            "mgt_ip_address": "172.16.15.116"
+        },
+            {
+                "name": "probe02",
+                "automatic": false,
+                "mgt_ip_address": "172.16.15.53"
+            },
+            {
+                "name": "probe03",
+                "automatic": false,
+                "mgt_ip_address": "172.16.15.59"
+            }
+     ],
+    "probe_mapping": {
+            "vrops_master": "probe01",
+            "vrops_replica": "probe02",
+            "vrops_witness": "probe03"
+            },
+    "network_config": [
+             {
+                "name": "vrops_master",
+                "dhcp": false,
+                 "vlan": "0",
+                 "ip": "192.168.123.233",
+                 "gw": "192.168.123.254",
+                 "mask": "255.255.255.0",
+                 "mtu": "1500"
+            },
+            {
+                "name": "vrops_replica",
+                "dhcp": false,
+                 "vlan": "0",
+                 "ip": "192.168.101.135",
+                 "gw": "192.168.101.254",
+                 "mask": "255.255.255.0",
+                 "mtu": "1500"
+            },
+            {
+                "name": "vrops_witness",
+                "dhcp": false,
+                 "vlan": "0",
+                 "ip": "192.168.111.133",
+                 "gw": "192.168.111.254",
+                 "mask": "255.255.255.0",
+                 "mtu": "1500"
+            }
+        ],
+        "dns_servers": [
+            {
+                "name": "dns01",
+                "ip": "192.168.100.10",
+                "mask": "255.255.255.0"
+            },
+            {
+                "name": "dns02",
+                "ip": "192.168.100.11",
+                "mask": "255.255.255.0"
+            }
+        ],
+        "ntp_servers": [
+            {
+                "name": "ntp01",
+                "ip": "192.168.100.8",
+                "mask": "255.255.255.0"
+            },
+            {
+                "name": "ntp02",
+                "ip": "192.168.100.9",
+                "mask": "255.255.255.0"
+            }
+        ],
+        "ldap_servers": [
+            {
+            "name": "ldap01",
+            "ip": "192.168.100.10",
+            "mask": "255.255.255.0"
+            },
+            {
+            "name": "ldap01",
+            "ip": "192.168.100.11",
+            "mask": "255.255.255.0"
+                }
+
+        ]
+}
+

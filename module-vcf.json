@@ -1,0 +1,738 @@
+    {
+        "description": "VMware Cloud Foundation Network Testing Module v0.3",
+        "config_file_name": "module-vcf-config.json",
+        "entities": [
+                 {
+                    "name": "az1_esxi_mgmt01",
+                    "network_config": "az1_vcf_mgmt_host01",
+                    "probe_mapping": "az1_probe01"
+                },
+                {
+                    "name": "az1_esxi_mgmt02",
+                    "network_config": "az1_vcf_mgmt_host02",
+                    "probe_mapping": "az1_probe02"
+                },
+                {
+                    "name": "az2_esxi_mgmt01",
+                    "network_config": "az2_vcf_mgmt_host01",
+                    "probe_mapping": "az2_probe01"
+                },
+                {
+                    "name": "az2_esxi_mgmt02",
+                    "network_config": "az2_vcf_mgmt_host02",
+                    "probe_mapping": "az2_probe02"
+                },
+                 {
+                    "name": "az1_esxi_vsan01",
+                    "network_config": "az1_vsan_host01",
+                    "probe_mapping": "az1_probe01"
+                },
+                {
+                    "name": "az1_esxi_vsan02",
+                    "network_config": "az1_vsan_host02",
+                    "probe_mapping": "az1_probe02"
+                },
+                {
+                    "name": "az2_esxi_vsan01",
+                    "network_config": "az2_vsan_host01",
+                    "probe_mapping": "az2_probe01"
+                },
+                {
+                    "name": "az2_esxi_vsan02",
+                    "network_config": "az2_vsan_host02",
+                    "probe_mapping": "az2_probe02"
+                },
+                {
+                    "name": "witness_mgt",
+                    "network_config": "witness_mgt",
+                    "probe_mapping": "vsan_witness"
+                },
+                {
+                    "name": "witness_vsan",
+                    "network_config": "witness_vsan",
+                    "probe_mapping": "vsan_witness"
+                },
+                {
+                    "name": "az1_esxi_nsxt01",
+                    "network_config": "az1_nsxt_host01",
+                    "probe_mapping": "az1_probe01"
+                },
+                {
+                    "name": "az1_esxi_nsxt02",
+                    "network_config": "az1_nsxt_host02",
+                    "probe_mapping": "az1_probe02"
+                },
+                {
+                    "name": "az2_esxi_nsxt01",
+                    "network_config": "az2_nsxt_host01",
+                    "probe_mapping": "az2_probe01"
+                },
+                {
+                    "name": "az2_esxi_nsxt02",
+                    "network_config": "az2_nsxt_host02",
+                    "probe_mapping": "az2_probe02"
+                },    
+                {
+                    "name": "az1_esxi_vmotion01",
+                    "network_config": "az1_vmotion_host01",
+                    "probe_mapping": "az1_probe01"
+                },
+                {
+                    "name": "az1_esxi_vmotion02",
+                    "network_config": "az1_vmotion_host02",
+                    "probe_mapping": "az1_probe02"
+                },
+                {
+                    "name": "az2_esxi_vmotion01",
+                    "network_config": "az2_vmotion_host01",
+                    "probe_mapping": "az2_probe01"
+                },
+                {
+                    "name": "az2_esxi_vmotion02",
+                    "network_config": "az2_vmotion_host02",
+                    "probe_mapping": "az2_probe02"
+                },
+                {
+                    "name": "az1_edge_overlay",
+                    "network_config": "edge_overlay",
+                    "probe_mapping": "az1_probe02"
+                },
+                {
+                    "name": "az2_edge_overlay",
+                    "network_config": "edge_overlay",
+                    "probe_mapping": "az2_probe02"
+                }
+
+
+        ],
+        "existing_entities": [
+                {
+                    "name": "dns_servers",
+                    "config_section": "dns_servers"
+                },
+                {
+                    "name": "ntp_servers",
+                    "config_section": "ntp_servers"
+                },
+                {
+                    "name": "ca_servers",
+                    "config_section": "ca_servers"
+                },
+                {
+                    "name": "ad_servers",
+                    "config_section": "ad_servers"
+                }
+
+
+
+        ],
+        "tests": [
+            {
+                "name": "vSAN Network Flows in AZ1",
+                "type": "src_dst",
+                "optional": false,
+                "src_entity": "az1_esxi_vsan01",
+                "dst_entity": "az1_esxi_vsan02",
+                "reverse_flow": true,
+                "flows": [
+                    {
+                        "protocol": "TCP",
+                        "port": "80"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "8080"
+                    },
+                     {
+                        "protocol": "TCP",
+                        "port": "2233"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "5201"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "1564"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "1565"
+                    },
+                    {
+                        "protocol": "UDP",
+                        "port": "12345"
+                    },
+                    {
+                        "protocol": "UDP",
+                        "port": "23451"
+                    },
+                    {
+                        "protocol": "UDP",
+                        "port": "5001"
+                    },
+                    {
+                        "protocol": "UDP",
+                        "port": "5201"
+                    },
+                    {
+                        "protocol": "UDP",
+                        "port": "12321"
+                    },
+                    {
+                        "protocol": "UDP",
+                        "port": "12443"
+                    },
+                    {
+                        "protocol": "ICMP"
+                    }
+                ]
+            },
+            {
+                "name": "vSAN Network Flows in AZ2",
+                "type": "src_dst",
+                "optional": true,
+                "optional_parameter": "stretch_cluster",
+                "optional_parameter_value": true, 
+                "src_entity": "az2_esxi_vsan01",
+                "dst_entity": "az2_esxi_vsan02",
+                "reverse_flow": true,
+                "flows": [
+                    {
+                        "protocol": "TCP",
+                        "port": "80"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "8080"
+                    },
+                     {
+                        "protocol": "TCP",
+                        "port": "2233"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "1564"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "1565"
+                    },
+                    {
+                        "protocol": "UDP",
+                        "port": "12345"
+                    },
+                    {
+                        "protocol": "UDP",
+                        "port": "23451"
+                    },
+                    {
+                        "protocol": "UDP",
+                        "port": "5001"
+                    },
+                    {
+                        "protocol": "UDP",
+                        "port": "5201"
+                    },
+                    {
+                        "protocol": "UDP",
+                        "port": "12321"
+                    },
+                    {
+                        "protocol": "UDP",
+                        "port": "12443"
+                    },
+                    {
+                        "protocol": "ICMP"
+                    }
+                ]
+            },
+            {
+                "name": "vSAN Network Flows between AZ",
+                "type": "src_dst",
+                "optional": true,
+                "optional_parameter": "stretch_cluster",
+                "optional_parameter_value": true, 
+                "src_entity": "az1_esxi_vsan01",
+                "dst_entity": "az2_esxi_vsan01",
+                "reverse_flow": true,
+                "flows": [
+                    {
+                        "protocol": "TCP",
+                        "port": "80"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "8080"
+                    },
+                     {
+                        "protocol": "TCP",
+                        "port": "2233"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "1564"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "1565"
+                    },
+                    {
+                        "protocol": "UDP",
+                        "port": "12345"
+                    },
+                    {
+                        "protocol": "UDP",
+                        "port": "23451"
+                    },
+                    {
+                        "protocol": "UDP",
+                        "port": "5001"
+                    },
+                    {
+                        "protocol": "UDP",
+                        "port": "5201"
+                    },
+                    {
+                        "protocol": "UDP",
+                        "port": "12321"
+                    },
+                    {
+                        "protocol": "UDP",
+                        "port": "12443"
+                    },
+                    {
+                        "protocol": "ICMP"
+                    }
+                ]
+            },
+            {
+                "name": "vSAN Network Flows from AZ1 to Witness",
+                "type": "src_dst",
+                "optional": true,
+                "optional_parameter": "stretch_cluster",
+                "optional_parameter_value": true, 
+                "src_entity": "az1_esxi_vsan01",
+                "dst_entity": "witness_vsan",
+                "reverse_flow": true,
+                "flows": [
+                    {
+                        "protocol": "TCP",
+                        "port": "80"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "8080"
+                    },
+                     {
+                        "protocol": "TCP",
+                        "port": "2233"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "1564"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "1565"
+                    },
+                    {
+                        "protocol": "UDP",
+                        "port": "12345"
+                    },
+                    {
+                        "protocol": "UDP",
+                        "port": "23451"
+                    },
+                    {
+                        "protocol": "UDP",
+                        "port": "5001"
+                    },
+                    {
+                        "protocol": "UDP",
+                        "port": "5201"
+                    },
+                    {
+                        "protocol": "UDP",
+                        "port": "12321"
+                    },
+                    {
+                        "protocol": "UDP",
+                        "port": "12443"
+                    },
+                    {
+                        "protocol": "ICMP"
+                    }
+                ]
+            },
+            {
+                "name": "vMotion Network Flows in AZ1",
+                "type": "src_dst",
+                "optional": false,
+                "src_entity": "az1_esxi_vmotion01",
+                "dst_entity": "az1_esxi_vmotion02",
+                "reverse_flow": true,
+                "flows": [
+                     {
+                        "protocol": "TCP",
+                        "port": "8000"
+                    },
+                    {
+                        "protocol": "ICMP"
+                    }
+                ]
+            },
+            {
+                "name": "vMotion Network Flows in AZ2",
+                "type": "src_dst",
+                "optional": true,
+                "optional_parameter": "stretch_cluster",
+                "optional_parameter_value": true, 
+                "src_entity": "az2_esxi_vmotion01",
+                "dst_entity": "az2_esxi_vmotion02",
+                "reverse_flow": true,
+                "flows": [
+                     {
+                        "protocol": "TCP",
+                        "port": "8000"
+                    },
+                    {
+                        "protocol": "ICMP"
+                    }
+                ]
+            },
+            {
+                "name": "vMotion Network Flows between AZ",
+                "type": "src_dst",
+                "optional": true,
+                "optional_parameter": "stretch_cluster",
+                "optional_parameter_value": true, 
+                "src_entity": "az1_esxi_vmotion01",
+                "dst_entity": "az2_esxi_vmotion01",
+                "reverse_flow": true,
+                "flows": [
+                     {
+                        "protocol": "TCP",
+                        "port": "8000"
+                    },
+                    {
+                        "protocol": "ICMP"
+                    }
+                ]
+            },
+            {
+            "name": "NSX-T Host Network Flows in AZ1",
+            "type": "src_dst",
+            "optional": false,
+            "src_entity": "az1_esxi_nsxt01",
+            "dst_entity": "az1_esxi_nsxt02",
+            "reverse_flow": true,
+            "flows": [
+                 {
+                    "protocol": "UDP",
+                    "port": "3784"
+                },
+                {
+                    "protocol": "UDP",
+                    "port": "3785"
+                },
+                {
+                    "protocol": "UDP",
+                    "port": "6081"
+                },
+                {
+                    "protocol": "ICMP"
+                }
+            ]
+        },
+        {
+            "name": "NSX-T Host Network Flows in AZ2",
+            "type": "src_dst",
+            "optional": true,
+            "optional_parameter": "stretch_cluster",
+            "optional_parameter_value": true, 
+            "src_entity": "az2_esxi_nsxt01",
+            "dst_entity": "az2_esxi_nsxt02",
+            "reverse_flow": false,
+            "flows": [
+                 {
+                    "protocol": "UDP",
+                    "port": "3784"
+                },
+                {
+                    "protocol": "UDP",
+                    "port": "3785"
+                },
+                {
+                    "protocol": "UDP",
+                    "port": "6081"
+                },
+                {
+                    "protocol": "ICMP"
+                }
+            ]
+        },
+        {
+            "name": "NSX-T Host Network Flows between AZ",
+            "type": "src_dst",
+            "optional": true,
+            "optional_parameter": "stretch_cluster",
+            "optional_parameter_value": true, 
+            "src_entity": "az1_esxi_nsxt01",
+            "dst_entity": "az2_esxi_nsxt01",
+            "reverse_flow": true,
+            "flows": [
+                 {
+                    "protocol": "UDP",
+                    "port": "3784"
+                },
+                {
+                    "protocol": "UDP",
+                    "port": "3785"
+                },
+                {
+                    "protocol": "UDP",
+                    "port": "6081"
+                },
+                {
+                    "protocol": "ICMP"
+                }
+            ]
+        },
+        {
+            "name": "NSX-T Host in AZ1 to Edge in AZ1 Flows",
+            "type": "src_dst",
+            "optional": false,
+            "src_entity": "az1_esxi_nsxt01",
+            "dst_entity": "az1_edge_overlay",
+            "reverse_flow": true,
+            "flows": [
+                 {
+                    "protocol": "UDP",
+                    "port": "3784"
+                },
+                {
+                    "protocol": "UDP",
+                    "port": "3785"
+                },
+                {
+                    "protocol": "UDP",
+                    "port": "6081"
+                },
+                {
+                    "protocol": "ICMP"
+                }
+            ]
+        },
+        {
+            "name": "NSX-T Host in AZ1 to Edge in AZ2 Flows",
+            "type": "src_dst",
+            "optional": true,
+            "optional_parameter": "stretch_cluster",
+            "optional_parameter_value": true, 
+            "src_entity": "az1_esxi_nsxt02",
+            "dst_entity": "az2_edge_overlay",
+            "reverse_flow": true,
+            "flows": [
+                 {
+                    "protocol": "UDP",
+                    "port": "3784"
+                },
+                {
+                    "protocol": "UDP",
+                    "port": "3785"
+                },
+                {
+                    "protocol": "UDP",
+                    "port": "6081"
+                },
+                {
+                    "protocol": "ICMP"
+                }
+            ]
+        },
+        {
+            "name": "NSX-T Host in AZ2 to Edge in AZ1 Flows",
+            "type": "src_dst",
+            "optional": true,
+            "optional_parameter": "stretch_cluster",
+            "optional_parameter_value": true, 
+            "src_entity": "az2_esxi_nsxt02",
+            "dst_entity": "az1_edge_overlay",
+            "reverse_flow": true,
+            "flows": [
+                 {
+                    "protocol": "UDP",
+                    "port": "3784"
+                },
+                {
+                    "protocol": "UDP",
+                    "port": "3785"
+                },
+                {
+                    "protocol": "UDP",
+                    "port": "6081"
+                },
+                {
+                    "protocol": "ICMP"
+                }
+            ]
+        },
+        {
+            "name": "NSX-T Host in AZ2 to Edge in AZ2 Flows",
+            "type": "src_dst",
+            "optional": true,
+            "optional_parameter": "stretch_cluster",
+            "optional_parameter_value": true, 
+            "src_entity": "az2_esxi_nsxt01",
+            "dst_entity": "az2_edge_overlay",
+            "reverse_flow": true,
+            "flows": [
+                 {
+                    "protocol": "UDP",
+                    "port": "3784"
+                },
+                {
+                    "protocol": "UDP",
+                    "port": "3785"
+                },
+                {
+                    "protocol": "UDP",
+                    "port": "6081"
+                },
+                {
+                    "protocol": "ICMP"
+                }
+            ]
+        },
+            {
+                "name": "DNS Servers connectivity testing from Managment Network in AZ1",
+                "type": "dst",
+                "optional": false,
+                "src_entity": "az1_esxi_mgmt01",
+                "dst_entity": "dns_servers",
+                "flows": [
+                     {
+                        "protocol": "DNS"
+                    }
+                ]
+                },
+                {
+                    "name": "DNS Servers connectivity testing from Managment Network in AZ2",
+                    "type": "dst",
+                    "optional": true,
+                    "optional_parameter": "stretch_cluster",
+                    "optional_parameter_value": true, 
+                    "src_entity": "az2_esxi_mgmt01",
+                    "dst_entity": "dns_servers",
+                    "flows": [
+                         {
+                            "protocol": "DNS"
+                        }
+                    ]
+                    },
+                {
+                    "name": "NTP Servers connectivity testing from VCF Managment Network in AZ1",
+                    "type": "dst",
+                    "optional": false,
+                    "src_entity": "az1_esxi_mgmt01",
+                    "dst_entity": "ntp_servers",
+                    "flows": [
+                         {
+                            "protocol": "NTP"
+                        }
+                    ]
+                },
+                {
+                    "name": "NTP Servers connectivity testing from VCF Management Network in AZ2",
+                    "type": "dst",
+                    "optional": true,
+                    "optional_parameter": "stretch_cluster",
+                    "optional_parameter_value": true, 
+                    "src_entity": "az2_esxi_mgmt01",
+                    "dst_entity": "ntp_servers",
+                    "flows": [
+                         {
+                            "protocol": "NTP"
+                        }
+                    ]
+                },
+            {
+                "name": "CA Server connectivity testing from VCF Management Network in AZ1",
+                "type": "dst",
+                "optional": true,
+                "optional_parameter": "using_ca",
+                "optional_parameter_value": true, 
+                "src_entity": "az1_esxi_mgmt01",
+                "dst_entity": "ca_servers",
+                "flows": [
+                     {
+                        "protocol": "TCP",
+                        "port": "80"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "443"
+                    }
+                ]
+            },
+            {
+                "name": "CA Servers connectivity testing from VCF Management Network in AZ2",
+                "type": "dst",
+                "optional": true,
+                "optional_parameter": "using_ca",
+                "optional_parameter_value": true, 
+                "src_entity": "az2_esxi_mgmt01",
+                "dst_entity": "ca_servers",
+                "flows": [
+                    {
+                        "protocol": "TCP",
+                        "port": "80"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "443"
+                    }
+                ]
+            },
+            {
+                "name": "AD Servers connectivity testing from VCF Management Network in AZ1",
+                "type": "dst",
+                "optional": false,
+                "src_entity": "az1_esxi_mgmt01",
+                "dst_entity": "ad_servers",
+                "flows": [
+                    {
+                        "protocol": "TCP",
+                        "port": "389"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "636"
+                    }
+                ]
+            },
+            {
+                "name": "AD Servers connectivity testing from VCF Management Network in AZ2",
+                "type": "dst",
+                "optional": true,
+                "optional_parameter": "stretch_cluster",
+                "optional_parameter_value": true, 
+                "src_entity": "az2_esxi_mgmt01",
+                "dst_entity": "ad_servers",
+                "flows": [
+                    {
+                        "protocol": "TCP",
+                        "port": "389"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "636"
+                    }
+                ]
+            }
+
+        ]
+            }
+
+
