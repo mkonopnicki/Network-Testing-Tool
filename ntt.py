@@ -91,7 +91,7 @@ def print_test(tst_src_ip, tst_dst_ip, tst_protocol, tst_port=""):
 
 
 #main function
-print(colored(153, 204, 255, "\nNetwork Testing Tool v0.2\n"))
+print(colored(153, 204, 255, "\nNetwork Testing Tool v0.3\n"))
 print(colored(153, 204, 255, "Writing to log file: ntt-log-%s.log\n" % (tsfile)))
 time.sleep(1)
 print(colored(204, 102, 0, module['description']))
