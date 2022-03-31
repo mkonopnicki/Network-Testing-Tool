@@ -307,13 +307,199 @@
                 ]
             },
             {
-                "name": "vSAN Network Flows from AZ1 to Witness",
+                "name": "vMotion Network Flows in AZ1",
+                "type": "src_dst",
+                "optional": false,
+                "src_entity": "az1_esxi_vmotion01",
+                "dst_entity": "az1_esxi_vmotion02",
+                "reverse_flow": true,
+                "flows": [
+                     {
+                        "protocol": "TCP",
+                        "port": "8000"
+                    },
+                    {
+                        "protocol": "ICMP"
+                    }
+                ]
+            },
+            {
+                "name": "vMotion Network Flows in AZ2",
                 "type": "src_dst",
                 "optional": true,
                 "optional_parameter": "stretch_cluster",
                 "optional_parameter_value": true, 
-                "src_entity": "az1_esxi_vsan01",
-                "dst_entity": "witness_vsan",
+                "src_entity": "az2_esxi_vmotion01",
+                "dst_entity": "az2_esxi_vmotion02",
+                "reverse_flow": true,
+                "flows": [
+                     {
+                        "protocol": "TCP",
+                        "port": "8000"
+                    },
+                    {
+                        "protocol": "ICMP"
+                    }
+                ]
+            },
+             {
+                "name": "vSAN Network Flows from Witness Management Network to AZ1 Managment Network",
+                "type": "src_dst",
+                "optional": true,
+                "optional_parameter": "stretch_cluster",
+                "optional_parameter_value": true, 
+                "src_entity": "witness_mgt",
+                "dst_entity": "az1_esxi_mgmt01",
+                "reverse_flow": false,
+                "flows": [
+                    {
+                        "protocol": "TCP",
+                        "port": "22"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "443"
+                    },
+                     {
+                        "protocol": "TCP",
+                        "port": "902"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "1234"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "2014"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "8080"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "1235"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "5696"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "5671"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "80"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "9000"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "44046"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "31031"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "5580"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "9080"
+                    },
+                    {
+                        "protocol": "ICMP"
+                    }
+                ]
+            },
+            {
+                "name": "vSAN Network Flows from Witness Management Network to AZ2 Managment Network",
+                "type": "src_dst",
+                "optional": true,
+                "optional_parameter": "stretch_cluster",
+                "optional_parameter_value": true, 
+                "src_entity": "witness_mgt",
+                "dst_entity": "az2_esxi_mgmt01",
+                "reverse_flow": false,
+                "flows": [
+                    {
+                        "protocol": "TCP",
+                        "port": "22"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "443"
+                    },
+                     {
+                        "protocol": "TCP",
+                        "port": "902"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "1234"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "2014"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "8080"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "1235"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "5696"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "5671"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "80"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "9000"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "44046"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "31031"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "5580"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "9080"
+                    },
+                    {
+                        "protocol": "ICMP"
+                    }
+                ]
+            },
+            {
+                "name": "vSAN Network Flows from Witness vSAN Network to AZ1 vSAN Network",
+                "type": "src_dst",
+                "optional": true,
+                "optional_parameter": "stretch_cluster",
+                "optional_parameter_value": true, 
+                "src_entity": "witness_vsan",
+                "dst_entity": "az1_esxi_vsan01",
                 "reverse_flow": true,
                 "flows": [
                     {
@@ -359,6 +545,103 @@
                     {
                         "protocol": "UDP",
                         "port": "12443"
+                    },
+                    {
+                        "protocol": "ICMP"
+                    }
+                ]
+            },
+            {
+                "name": "vSAN Network Flows from Witness vSAN Network to AZ2 vSAN Network",
+                "type": "src_dst",
+                "optional": true,
+                "optional_parameter": "stretch_cluster",
+                "optional_parameter_value": true, 
+                "src_entity": "witness_vsan",
+                "dst_entity": "az2_esxi_vsan01",
+                "reverse_flow": true,
+                "flows": [
+                    {
+                        "protocol": "TCP",
+                        "port": "80"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "8080"
+                    },
+                     {
+                        "protocol": "TCP",
+                        "port": "2233"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "1564"
+                    },
+                    {
+                        "protocol": "TCP",
+                        "port": "1565"
+                    },
+                    {
+                        "protocol": "UDP",
+                        "port": "12345"
+                    },
+                    {
+                        "protocol": "UDP",
+                        "port": "23451"
+                    },
+                    {
+                        "protocol": "UDP",
+                        "port": "5001"
+                    },
+                    {
+                        "protocol": "UDP",
+                        "port": "5201"
+                    },
+                    {
+                        "protocol": "UDP",
+                        "port": "12321"
+                    },
+                    {
+                        "protocol": "UDP",
+                        "port": "12443"
+                    },
+                    {
+                        "protocol": "ICMP"
+                    }
+                ]
+            },
+            {
+                "name": "Network Flows from Witness vSAN Network to AZ1 Management Network(WTS)",
+                "type": "src_dst",
+                "optional": true,
+                "optional_parameter": "stretch_cluster",
+                "optional_parameter_value": true, 
+                "src_entity": "witness_vsan",
+                "dst_entity": "az1_esxi_mgmt01",
+                "reverse_flow": true,
+                "flows": [
+                    {
+                        "protocol": "UDP",
+                        "port": "12321"
+                    },
+                    {
+                        "protocol": "ICMP"
+                    }
+                ]
+            },
+            {
+                "name": "Network Flows from Witness vSAN Network to AZ2 Management Network(WTS)",
+                "type": "src_dst",
+                "optional": true,
+                "optional_parameter": "stretch_cluster",
+                "optional_parameter_value": true, 
+                "src_entity": "witness_vsan",
+                "dst_entity": "az2_esxi_mgmt01",
+                "reverse_flow": true,
+                "flows": [
+                    {
+                        "protocol": "UDP",
+                        "port": "12321"
                     },
                     {
                         "protocol": "ICMP"
@@ -453,7 +736,7 @@
             "optional_parameter_value": true, 
             "src_entity": "az2_esxi_nsxt01",
             "dst_entity": "az2_esxi_nsxt02",
-            "reverse_flow": false,
+            "reverse_flow": true,
             "flows": [
                  {
                     "protocol": "UDP",
