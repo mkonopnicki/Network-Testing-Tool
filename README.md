@@ -8,12 +8,12 @@
      ICMP test using custom size MTU
      DNS test using dig
      NTP test using ntpdate
-     PLEASE NOTE THAT in OF THIS VERSION DHCP FUNCTION OF [network_config] section is not working due to bug
+     PLEASE NOTE THAT IN THIS VERSION DHCP FUNCTION OF [network_config] section is not working due to bug
 2. Components
     There are 2 main components of this tools:  
     * Testing probe - Preconfigured Photon OS 4 virtual machine with 2 virtual NICs(first NIC for ssh connectivity to run tests, and second NIC for test traffic)
         This preconfigured VM is available for download as OVA, however if needed it can be build from scratch.
-        When using OVA, by default first interface(ssh) will be configured for DHCP. If no DHCP is available in the environment then first interface can be manually configured with static IP address. Login for OVA root/VMw@re1!
+        When using OVA, by default first interface(ssh) will be configured for DHCP. If no DHCP is available in the environment then first interface can be manually configured with static IP address. Login for OVA: root/VMw@re1!
         If tou would like to create your own testing probe using any other Linux distro, following requirments have to be met:
         - installed tools: ncat(from nmap-ncat package), dig, ntpdate, tracepath
         - firewall disabled
